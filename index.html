@@ -4,40 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sof.marques portfolio</title>
+
     <style>
-        p{
-            color: red;
-        }
-        h1{
-            color: brown;
-        }
-        body{
-            background: beige;
+        body {
+            background: rgb(255, 255, 255);
             font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: rgb(138, 138, 138);
         }
-        a{
+
+        a {
+            color: rgb(129, 129, 129);
             text-decoration: none;
         }
 
+        /* TOP BAR */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        /* IMAGE CENTER (overlay) */
+        .image-wrapper {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .image-wrapper img {
+            width: 20vw;
+            height: auto;
+        }
+
+        /* TITLE */
+        .portfolio-title {
+            height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+            z-index: 5;
+        }
+
+        .portfolio-title h1 {
+            font-size: 17vw;
+            line-height: 1;
+            margin: 0;
+            padding: 20px;
+            text-transform: uppercase;
+        }
+
+        /* SOCIAL */
+        .social {
+            padding: 20px;
+            position: relative;
+            z-index: 5;
+        }
     </style>
 </head>
+
 <body>
 
-<h1>Ciao Mondo! Benvenuti nel mio portfolio :))))</h1>
+    <div class="top-bar">
+        <div><a href="#">Sof.Marques</a></div>
+        <div><a href="#">About</a></div>
+    </div>
 
-<p>
-    i miei links:<br>
-    <a target="_blank" href="https://www.instagram.com/sof.marques/?igsh=ZzkxdHplbm9tNHRt&utm_source=qr">IG</a><br>
-</p>
+    <div class="image-wrapper">
+        <img src="flower.jpeg" alt="portfolio image">
+    </div>
 
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean feugiat feugiat tortor. Quisque et nunc nisi. Integer sit amet volutpat dui. Integer sagittis nunc lectus, vel egestas turpis tempor nec. In bibendum nec lectus ac vestibulum. Nulla quis luctus libero. Duis sed vehicula nulla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam at velit dignissim turpis venenatis luctus et quis ipsum.
-    Morbi lobortis ullamcorper urna, nec lacinia lectus iaculis id. Ut quam nisl, commodo et mollis in, tempus et sem. Curabitur tincidunt nisi non rhoncus efficitur. Suspendisse vel imperdiet urna. Donec ultrices est non nibh feugiat hendrerit. Sed id nulla vel nulla ultricies elementum. Phasellus rhoncus est id sapien viverra fringilla tempus vitae quam. Nullam eu mauris ut tortor porttitor porta semper eu urna. 
-</p>  
+    <div class="portfolio-title">
+        <h1>PORTFOLIO</h1>
+    </div>
 
-<img src="https://www.wondergifts.ae/cdn/shop/files/5e389000-3819-4601-81ca-dd247858c09a_d71035a8-9b26-4fd4-8313-68d0eb1a764f_1400x.jpg?v=1719018821">
-
-
+    <div class="social">
+        <p>
+            Social<br>
+            <a target="_blank" href="https://www.instagram.com/sof.marques/?igsh=ZzkxdHplbm9tNHRt&utm_source=qr">
+                IG
+            </a>
+        </p>
+    </div>
 
 </body>
 </html>
