@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>esercizio 1_giorno 2</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+  <script>
+    function setup(){
+        createCanvas(400, 400);
+        background(255);
+        noStroke();
+        
+        translate(200, 200); // Center coordinates
+
+        // Hair (Back braids)
+        fill(139, 69, 19); // Reddish Brown
+        rect(-55, 0, 35, 160, 10);
+        rect(20, 0, 35, 160, 10);
+
+        // Dress
+        fill(34, 139, 34); // Forest Green
+        ellipse(0, 180, 180, 220);
+        
+        // Neck
+        fill(154, 205, 50); // Ogre Green
+        rect(-20, 50, 40, 40);
+
+        // Ears (Trumpet style)
+        fill(154, 205, 50);
+        triangle(-45, 0, -90, -15, -90, 15); 
+        ellipse(-90, 0, 10, 30);
+        triangle(45, 0, 90, -15, 90, 15);
+        ellipse(90, 0, 10, 30);
+
+        // Face
+        fill(154, 205, 50);
+        ellipse(0, 0, 110, 130);
+
+        // Eyes
+        fill(255);
+        ellipse(-25, -10, 30, 20);
+        ellipse(25, -10, 30, 20);
+        fill(0); // Pupils
+        ellipse(-25, -10, 10, 10);
+        ellipse(25, -10, 10, 10);
+
+        // Nose
+        fill(107, 142, 35); // Darker green shadow
+        ellipse(0, 15, 15, 10);
+
+        // Mouth
+        noFill();
+        stroke(178, 34, 34); // Lipstick red
+        strokeWeight(3);
+        arc(0, 35, 40, 20, 0, PI);
+        noStroke();
+
+        // Hair (Front bangs)
+        fill(139, 69, 19);
+        arc(-30, -40, 60, 60, PI-QUARTER_PI, TWO_PI);
+        arc(30, -40, 60, 60, PI, TWO_PI+QUARTER_PI);
+
+        // Crown
+        fill(255, 215, 0); // Gold
+        beginShape();
+        vertex(-25, -55);
+        vertex(-25, -75);
+        vertex(-12, -60);
+        vertex(0, -80);
+        vertex(12, -60);
+        vertex(25, -75);
+        vertex(25, -55);
+        endShape(CLOSE);
+    }
+
+  </script>  
+</body>
+</html>
