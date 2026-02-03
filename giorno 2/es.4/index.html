@@ -4,37 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>esercizio 1_giorno 2</title>
-    <style>
-      body{
-        background-color: antiquewhite;
-      }
-    </style>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
   <script>
     function setup(){
-      createCanvas(512, 384)
-
+      createCanvas(500, 500)
+      background(200, 200, 200)
     }
 function draw(){
-  background(0)
-  noStroke()
 
-  let numH = 30
-  let numV = 20
-  let d = 10
+noStroke()
+  
+  fill(mouseX, mouseY, 100, 100)
 
-  let ox = (width - (numH - 1) * d) / 2
-  let oy = (height - (numV - 1) * d) / 2
-for(let j=0; j<numV; j++){
-    for(let i=0; i<numH; i++){
-      fill(i * 10, j * 10, 255-i*10)
-      let px = 110 + i * 13
-      let py = 110 + j * 13
-      circle(px, py, 6)
-    }}
+  let diametro = 50
 
+  ellipse(mouseX, mouseY, diametro, diametro)
+  ellipse(width-mouseX, mouseY, diametro, diametro)
 }
   </script>  
 </body>
