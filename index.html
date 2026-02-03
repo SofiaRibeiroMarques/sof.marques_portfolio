@@ -7,11 +7,12 @@
 
     <style>
         body {
-            background: rgb(255, 255, 255);
+            background: white;
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 0;
             color: rgb(120, 120, 120);
+            height: 200vh;
         }
 
         a {
@@ -19,25 +20,30 @@
             text-decoration: none;
         }
 
- 
+
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px;
             position: fixed;
+            top: 0;
             width: 100%;
             box-sizing: border-box;
             z-index: 10;
+
+            background: white;
         }
 
-
+        /* IMMAGINE */
         .image-wrapper {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 1;
+            z-index: 2;
+            transition: opacity 0.1s linear;
+            pointer-events: none;
         }
 
         .image-wrapper img {
@@ -45,7 +51,7 @@
             height: auto;
         }
 
-
+        /* TITOLO */
         .portfolio-title {
             height: 100vh;
             display: flex;
@@ -60,8 +66,8 @@
             margin: 0;
             padding: 20px;
             text-transform: uppercase;
+            font-weight: 200;
         }
-
 
         .social {
             padding: 20px;
@@ -69,8 +75,9 @@
             z-index: 5;
         }
 
-        .paragrafo{
+        .paragrafo {
             padding: 20px;
+            max-width: 600px;
         }
     </style>
 </head>
@@ -82,26 +89,15 @@
         <div><a href="#">About</a></div>
     </div>
 
-    <div class="image-wrapper">
+    <div class="image-wrapper" id="image">
         <img src="flower.jpeg" alt="portfolio image">
     </div>
 
     <div class="portfolio-title">
-        <h1 style="font-weight: 200;">PORTFOLIO</h1>
+        <h1>PORTFOLIO</h1>
     </div>
 
     <div class="social">
         <p>
             Social<br>
-            <a target="_blank" href="https://www.instagram.com/sof.marques/?igsh=ZzkxdHplbm9tNHRt&utm_source=qr">
-                IG @sof.marques
-            </a>
-            
-        </p>
-    </div>
-    <p class="paragrafo">
-        Questi sito racchiude tutti gli esercizi realizzati durante un seminario di codice.
-    </p>
-
-</body>
-</html>
+            <a target="_blank" href="https://www.instagram.com/sof.marques/?igsh=ZzkxdHplbm9tNHRt&utm_source=
