@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>esercizio 1_giorno 2</title>
+    <style>
+      body{
+        background-color: antiquewhite;
+      }
+    </style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+  <script>
+    function preload(){
+      faccia = loadImage('faccia.png')
+    }
+    function setup(){
+      createCanvas(512, 384)
+      faccia.resize(faccia.width/ 7, faccia.height/7)
+
+    }
+function draw(){
+  background(0)
+  noStroke()
+
+  let numH = faccia.width
+  let numV = faccia.height
+  let d = 8
+
+  let ox = (width - (numH - 1) * d) / 2
+  let oy = (height - (numV - 1) * d) / 2
+for(let j=0; j<numV; j++){
+    for(let i=0; i<numH; i++){
+      fill(faccia.get(i, j))
+      let px = 110 + i * 13
+      let py = 110 + j * 13
+      circle(px, py, 6)
+    }}
+    image(faccia, 0, 0)
+
+}
+  </script>  
+</body>
+</html>
