@@ -1,38 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>esercizio 1_giorno 2</title>
-    <style>
-      body{
-        background-color: antiquewhite;
-      }
-    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			background-color: gray;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+	</style>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
-  <script>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js"></script>
+	<script>
 
-let shape
+		function setup() {
+			createCanvas(windowWidth, windowHeight)
+		}
 
-function preload() {
-  shape = loadModel('mask.obj', true)
-}
+		function draw(){
+			background(0)
 
-function setup() {
-  createCanvas(500, 500, WEBGL)
-  describe('Un modello 3D di una maschera tribale nepalese che può essere ruotata con il mouse.')
-}
+			noFill()
+			stroke(255, 0, 255)
+			drawingContext.shadowBlur = 20
+			drawingContext.shadowColor = 'magenta'
 
-function draw() {
-  background(200)
+			let sn = mouseX * 0.01
+			let depth = mouseY
 
-  orbitControl()
+			for (let j=50; j<height-50; j+=6) {
+				beginShape()
+				for (let i = 0; i < width; i+=5) {
+					let n = noise(i * 0.003 + sn, j * 0.007 + frameCount * 0.01) * 300 - depth
+					n = min(0, n)
+					vertex(i, n + j)
+				}
+				endShape()
+			}
+		}
 
-  scale(2.5)
-  model(shape)
-}
-  </script>  
+		function windowResized() {
+			resizeCanvas(windowWidth, windowHeight)
+		}
+	</script>
 </body>
 </html>
