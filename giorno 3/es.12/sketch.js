@@ -3,14 +3,14 @@ function setup() {
 }
 
 function draw() {
-	background(255, 220, 230) // Rosa chiaro
+	background(255, 220, 230)
 	noFill()
-	stroke(255, 0, 255) // Fucsia
+	stroke(255, 0, 255) 
 	strokeWeight(2) //spessore bordo
 
 	let px = mouseX
 	let py = mouseY
-	let s  = 5 //dimensione scritta
+	let s  = 10 //dimensione scritta
 
 
 	let letters = [
@@ -36,7 +36,6 @@ function draw() {
 		for (let j = 0; j < shape.length; j++) {
 			let vx = shape[j][0]
 			let vy = shape[j][1]
-			// Disegna il vertice con l'offset e il tremolio (random)
 			vertex(px + (xOff + vx) * s + random(-1,1), py + vy * s + random(-1,1))
 		}
 		endShape(CLOSE)
