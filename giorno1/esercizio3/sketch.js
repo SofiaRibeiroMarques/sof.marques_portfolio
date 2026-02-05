@@ -1,8 +1,15 @@
 let flamingos = [];
 let lastFlamingoTime = 0;
+let topBar;
+let topBarHeight = 0;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight)
+	// Seleziona la top-bar per calcolarne l'altezza e usarla per centrare il testo
+    topBar = select('.top-bar');
+    if (topBar) {
+        topBarHeight = topBar.height;
+    }
 }
 
 function draw() {
@@ -17,8 +24,8 @@ function draw() {
 	let textWidth = (51 + 6) * s; // 51 è l'ultimo offset, 6 la larghezza dell'ultima lettera
 	let textHeight = 10 * s; // 10 è l'altezza massima di una lettera
 	let px = (width / 2) - (textWidth / 2)
-	let py = (height / 2) - (textHeight / 2)
-
+	// Calcola la posizione Y per centrare il testo, tenendo conto della top-bar
+	let py = (height / 2) - (textHeight / 2) - (topBarHeight / 2);
 	let letters = [
 		[[0,0], [6,0], [6,2], [2,2], [2,4], [5,4], [5,6], [2,6], [2,10], [0,10]], // F
 		[[0,0], [2,0], [2,8], [6,8], [6,10], [0,10]], // L
@@ -81,4 +88,8 @@ function draw() {
 
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight)
+	// Ricalcola l'altezza della top-bar quando la finestra viene ridimensionata
+    if (topBar) {
+        topBarHeight = topBar.height;
+    }
 }
