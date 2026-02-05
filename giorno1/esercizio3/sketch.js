@@ -11,7 +11,8 @@ function draw() {
 	stroke(255, 0, 255) // Fucsia
 	strokeWeight(2) //spessore bordo
 
-	let s  = 10 //dimensione scritta
+	// Rende la dimensione della scritta responsive in base alla larghezza della finestra
+	let s = width / 85;
 	// Calcolo la larghezza e l'altezza totali della scritta per centrarla
 	let textWidth = (51 + 6) * s; // 51 è l'ultimo offset, 6 la larghezza dell'ultima lettera
 	let textHeight = 10 * s; // 10 è l'altezza massima di una lettera
@@ -49,7 +50,21 @@ function draw() {
 
 
 	if (millis() - lastFlamingoTime > 150) {
-		flamingos.push({ x: mouseX, y: mouseY, size: random(20, 100) });
+		let x, y;
+		let isInside = true;
+		// Rende il margine attorno al testo responsive
+		const margin = s * 5; // Spazio extra attorno al testo
+
+		// Continua a generare coordinate finché non ne trova una fuori dall'area del testo
+		while (isInside) {
+			x = random(width);
+			y = random(height);
+			if (x < px - margin || x > px + textWidth + margin || y < py - margin || y > py + textHeight + margin) {
+				isInside = false;
+			}
+		}
+		// Rende la dimensione delle emoji responsive
+		flamingos.push({ x: x, y: y, size: random(s * 2, s * 10) });
 		lastFlamingoTime = millis();
 	}
 
