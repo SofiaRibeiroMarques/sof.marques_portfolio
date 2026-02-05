@@ -117,8 +117,8 @@
 
         .gallery-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 15px; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 40px; 
             max-width: 900px;
             margin: 80px auto; 
             padding: 0 20px;
@@ -139,6 +139,10 @@
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
             will-change: opacity, transform;
+        }
+
+        .gallery-item:nth-child(even) {
+            margin-top: 40px;
         }
 
  
@@ -225,23 +229,23 @@
 
     <div class="gallery-container">
 
-        <a target="_blank" href="esercizio 2/index.html" class="gallery-item" style="background-image: url('es.2.png');">
+        <a target="_blank" href="esercizio2/index.html" class="gallery-item" style="background-image: url('es.2.png');">
             <div class="gallery-item-overlay">
-                <h3>3D Mask</h3>
+                <h3>Flamingo 1</h3>
                 <p>Esercizio 2</p>
             </div>
         </a>
 
-        <a href="esercizio 3/index.html" class="gallery-item" style="background-image: url('es.3.png');">
+        <a href="esercizio3/index.html" class="gallery-item" style="background-image: url('es.3.png');">
             <div class="gallery-item-overlay">
-                <h3>Flamingo</h3>
+                <h3>Flamingo 2</h3>
                 <p>Esercizio 3</p>
             </div>
         </a>
         <a href="#" class="gallery-item" style="background-image: url('path/to/your/image3.jpg');">
             <div class="gallery-item-overlay">
                 <h3>Seminario</h3>
-                <p>Esercizio 3</p>
+                <p>Esercizio 4</p>
             </div>
         </a>
         <a href="#" class="gallery-item" style="background-image: url('path/to/your/image4.jpg');">
