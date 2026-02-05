@@ -6,34 +6,36 @@
 	<title>Document</title>
 	<style>
 		body {
-			background-color: rgb(255, 203, 240);
+			background-color: rgb(255, 218, 245);
 			height: 100vh;
 			display: flex;
 			margin: 0;
 			justify-content: center;
 			align-items: center;
+			font-family: 'Montserrat', sans-serif;
 		}
 
 		.picture{
 			justify-content: center;
 			align-items: center;
+			background-color: rgb(255, 218, 245);
 		}
 		a {
-            color: rgb(0, 0, 0);
+            color: rgb(255, 156, 230);
             text-decoration: none;
             position: relative;
             transition: color 0.3s ease;
         }
 
       
-        a::after {
+          a::after {
             content: '';
             position: absolute;
             width: 0;
             height: 1px;
             bottom: -2px;
             left: 0;
-            background-color: rgb(37, 37, 37);
+            background-color: rgb(255, 0, 247);
             transition: width 0.3s ease;
         }
 
@@ -53,15 +55,13 @@
             box-sizing: border-box;
             z-index: 10;
 
-            background: rgb(255, 203, 240);             
+            background: rgb(255, 218, 245);             
 
         }
 	</style>
 </head>
 <body>
-	<div class="top-bar">
-        <div><a href="../index1.html">Torna alla home</a></div>
-    </div>
+
 	
 	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js"></script>
 	<script class="picture">
@@ -79,8 +79,7 @@
 		}
 
 		function draw(){
-			// sfondo nero
-			background(255, 203, 240)
+			background(255, 218, 245)
 			noStroke()
 
 			let numH = flamingo.width
@@ -112,7 +111,7 @@
 		}
 	</script>
 <div class="top-bar">
-        <div><a href="../index1.html"> Torna alla home</a></div>
+        <div><a href="../index.html"> Torna alla home</a></div>
     </div>
 </body>
 </html>
