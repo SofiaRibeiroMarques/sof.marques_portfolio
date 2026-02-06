@@ -19,7 +19,7 @@ function draw() {
 	strokeWeight(2) //spessore bordo
 
 	// Rende la dimensione della scritta responsive in base alla larghezza della finestra
-	let s = width / 85;
+	let s = width / 130;
 	// Calcolo la larghezza e l'altezza totali della scritta per centrarla
 	let textWidth = (51 + 6) * s; // 51 è l'ultimo offset, 6 la larghezza dell'ultima lettera
 	let textHeight = 10 * s; // 10 è l'altezza massima di una lettera
