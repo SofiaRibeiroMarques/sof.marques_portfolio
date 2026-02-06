@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Micro Galassia Atomica</title>
     <style>
-        body { margin: 0; padding: 0; overflow: hidden; background-color: #12040d; }
+        body { margin: 0; padding: 0; overflow: hidden; background-color: #0a0f23; }
         
         #title-box {
             position: absolute;
@@ -20,7 +20,7 @@
         }
 
         #title-text {
-            color: #d16b9d; /* Rosa scuro per contrasto sul fondo chiaro */
+            color: #7069cf; /* Rosa scuro per contrasto sul fondo chiaro */
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-size: 13px; /* Più piccolo */
             font-weight: 600;
@@ -41,29 +41,37 @@
 <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
 <script>
 let atoms = [];
+let wordData = [];
 
     function setup() {
         createCanvas(windowWidth, windowHeight);
         
-        const contentDiv = document.getElementById('data-content');
-        const text = contentDiv.innerText;
-        const regex = /([a-zàèìòù]{2,20}):\s*(\d+)/gi; 
-        let wordData = [];
-        let match;
-        
-        while ((match = regex.exec(text)) !== null) {
-            wordData.push({ word: match[1].toLowerCase(), count: parseInt(match[2]) });
+        // I dati vengono letti e processati una sola volta
+        if (wordData.length === 0) {
+            const contentDiv = document.getElementById('data-content');
+            const text = contentDiv.innerText;
+            const regex = /([a-zàèìòù]{2,20}):\s*(\d+)/gi;
+            let match;
+            
+            while ((match = regex.exec(text)) !== null) {
+                wordData.push({ word: match[1].toLowerCase(), count: parseInt(match[2]) });
+            }
+
+            wordData = wordData.sort((a, b) => b.count - a.count).slice(0, 180);
         }
 
-        wordData = wordData.sort((a, b) => b.count - a.count).slice(0, 180);
+        createAtoms();
+    }
 
+    function createAtoms() {
+        atoms = [];
         for (let i = 0; i < wordData.length; i++) {
             atoms.push(new Atom(wordData[i].word, wordData[i].count, i === 0));
         }
     }
 
     function draw() {
-        background(18, 4, 13); 
+        background(10, 15, 50); 
         
         for (let a of atoms) {
             a.update();
@@ -81,9 +89,13 @@ let atoms = [];
             this.vx = random(-0.2, 0.2);
             this.vy = random(-0.2, 0.2);
             
-            this.size = map(log(count + 1), 0, log(2000), 2, 9);
-            this.orbitType = floor(random(1, 4)); 
-            this.mainColor = color(255, random(140, 210), random(180, 255), 160);
+            // Dimensione resa responsive in base alla dimensione della finestra
+            const baseDim = min(width, height);
+            this.size = map(log(count + 1), 0, log(2000), baseDim * 0.004, baseDim * 0.015);
+
+            this.orbitType = floor(random(1, 4));
+            this.nucleusColor = color(127, 55, 255); // Viola
+            this.orbitColor = color(0, 255, 100); // Blu chiaro
             this.orbitSpeed = random(0.02, 0.06);
             this.orbitIncline = random(TWO_PI);
         }
@@ -99,7 +111,8 @@ let atoms = [];
         }
 
         display() {
-            let isHovered = dist(mouseX, mouseY, this.x, this.y) < 25;
+            // Area di hover resa proporzionale alla dimensione dell'atomo
+            let isHovered = dist(mouseX, mouseY, this.x, this.y) < this.size * 3;
 
             push();
             translate(this.x, this.y);
@@ -120,15 +133,15 @@ let atoms = [];
             strokeWeight(0.5);
             
             for (let i = 0; i < this.orbitType; i++) {
-                stroke(this.mainColor, 50);
+                stroke(this.orbitColor, 50);
                 let rX = (this.size * 2.8) + (i * 3);
                 let rY = rX * 0.45;
                 
                 push();
                 rotate(i * PI / 2.5);
                 ellipse(0, 0, rX * 2, rY * 2);
-                
-                fill(255, 230, 245);
+
+                fill(this.orbitColor);
                 noStroke();
                 let speedMult = (i + 1) * 0.7;
                 let ex = cos(frameCount * this.orbitSpeed * speedMult) * rX;
@@ -138,13 +151,13 @@ let atoms = [];
             }
 
             noStroke();
-            fill(this.mainColor, 40);
+            fill(this.nucleusColor, 40);
             circle(0, 0, this.size * 2.2); 
-            fill(255, 245, 252);
+            fill(this.nucleusColor);
             circle(0, 0, this.size);
             pop();
 
-            // NUOVA LOGICA TESTO
+            // LOGICA TESTO
             if (isHovered) {
                 push();
                 textAlign(CENTER);
@@ -164,8 +177,52 @@ let atoms = [];
 
     function windowResized() {
         resizeCanvas(windowWidth, windowHeight);
+        createAtoms();
     }
 </script>
+<div class="top-bar">
+        <div><a href="../index.html">Torna alla home</a></div>
+    </div>
+<style>		
+    a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+      
+          a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: rgb(11, 15, 48);
+            transition: width 0.3s ease;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 10;
+
+        }
+        </style>
+
 
 <div id="data-content">
     non: 1863, a: 1815, che: 1211, marques: 1136, sofia: 1132, e: 968, è: 961, ma: 888, la: 853, immagine: 808, 

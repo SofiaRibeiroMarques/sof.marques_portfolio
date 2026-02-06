@@ -9,23 +9,24 @@
 
     <style>
         body {
-            background: rgb(255, 237, 251);
+            background: rgb(255, 255, 255);
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            color: rgb(255, 0, 204);
+            color: rgb(0, 0, 0);
             min-height: 250vh; 
             overflow-x: hidden;
         }
 
         a {
-            color: rgb(255, 156, 230);
+            color: rgb(0, 0, 0);
             text-decoration: none;
             position: relative;
             transition: color 0.3s ease;
         }
 
         a::after {
+            color: rgb(255, 0, 247);
             content: '';
             position: absolute;
             width: 0;
@@ -37,6 +38,7 @@
         }
 
         a:hover::after {
+            color: rgb(255, 0, 247);
             width: 100%;
         }
 
@@ -50,7 +52,7 @@
             width: 100%;
             box-sizing: border-box;
             z-index: 100;
-            background: rgba(255, 237, 251, 0.5);             
+            background: rgb(255, 255, 255);             
         }
 
         .image-wrapper {
@@ -65,7 +67,7 @@
 
         .image-wrapper img {
             width: auto;
-            height: 25vw;
+            height: 30vw;
         }
 
 
@@ -79,10 +81,10 @@
         }
 
         .portfolio-title h1 {
-            font-size: 18vw;
+            font-size: 13vw;
             line-height: 1;
-            margin: 0 0 -5vh 0; 
-            padding: 20px 0;
+            margin: 0 0 2vh 0; 
+            padding: 10px 0 0 20px;
             text-transform: uppercase;
             font-weight: 200;
             will-change: transform; 
@@ -123,13 +125,13 @@
         }
 
        
-        .gallery-item:nth-child(1) { top: 0%; left: 4%; }
-        .gallery-item:nth-child(2) { top: 15%; left: 68%; }
-        .gallery-item:nth-child(3) { top: 45%; left: 6%; }
-        .gallery-item:nth-child(4) { top: 70%; left: 65%; }
-        .gallery-item:nth-child(5) { top: 95%; left: 5%; }
-        .gallery-item:nth-child(6) { top: 120%; left: 67%; }
-        .gallery-item:nth-child(7) { top: 145%; left: 4%; }
+        .gallery-item:nth-child(1) { top: 0%; left: 5%; }
+        .gallery-item:nth-child(2) { top: 15%; left: 60%; }
+        .gallery-item:nth-child(3) { top: 45%; left: 10%; }
+        .gallery-item:nth-child(4) { top: 70%; left: 68%; }
+        .gallery-item:nth-child(5) { top: 95%; left: 2%; }
+        .gallery-item:nth-child(6) { top: 120%; left: 64%; }
+        .gallery-item:nth-child(7) { top: 145%; left: 8%; }
 
         .gallery-item.is-visible {
             opacity: 1;
@@ -191,11 +193,11 @@
     </div>
 
     <div class="image-wrapper" id="image">
-        <img src="ChileanFlamingo.jpg" alt="portfolio image">
+        <img src="logo.png" alt="portfolio image">
     </div>
 
     <div class="portfolio-title">
-        <h1>FLAMINGO</h1>
+        <h1>SOF.MARQUES</h1>
     </div>
 
     <div class="content-container">
@@ -214,7 +216,7 @@
 
     <div class="gallery-container">
         <div class="gallery-item">
-            <a target="_blank" href="esercizio2/index.html" class="gallery-thumb" style="background-image: url('es.2.png');"></a>
+            <a target="_blank" href="https://sofiaribeiromarques.github.io/sof.marques_portfolio/giorno1/esercizio2/index.html" class="gallery-thumb" style="background-image: url('es.2.png');"></a>
             <div class="gallery-info">
                 <h3>Flamingo 1</h3>
                 <p>Esercizio 2</p>
@@ -222,7 +224,7 @@
         </div>
 
         <div class="gallery-item">
-            <a href="esercizio3/index.html" class="gallery-thumb" style="background-image: url('es.3.png');"></a>
+            <a href="https://sofiaribeiromarques.github.io/sof.marques_portfolio/giorno1/esercizio3/index.html" class="gallery-thumb" style="background-image: url('es.3.png');"></a>
             <div class="gallery-info">
                 <h3>Flamingo 2</h3>
                 <p>Esercizio 3</p>
@@ -230,7 +232,7 @@
         </div>
 
         <div class="gallery-item">
-            <a href="esercizio4/index.html" class="gallery-thumb" style="background-image: url('es.4.png');"></a>
+            <a href="https://sofiaribeiromarques.github.io/sof.marques_portfolio/giorno1/esercizio4/index.html" class="gallery-thumb" style="background-image: url('es.4.png');"></a>
             <div class="gallery-info">
                 <h3>Seminario</h3>
                 <p>Esercizio 4</p>
@@ -238,9 +240,9 @@
         </div>
 
         <div class="gallery-item">
-            <a href="#" class="gallery-thumb" style="background-image: url('es.5.png');"></a>
+            <a href="https://sofiaribeiromarques.github.io/sof.marques_portfolio/giorno1/esercizio5/index.html" class="gallery-thumb" style="background-image: url('es.5.png');"></a>
             <div class="gallery-info">
-                <h3>Seminario</h3>
+                <h3>Atomo</h3>
                 <p>Esercizio 5</p>
             </div>
         </div>
