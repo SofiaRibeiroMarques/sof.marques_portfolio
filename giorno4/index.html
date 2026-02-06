@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro Galassia Atomica</title>
+    <style>
+        body { margin: 0; padding: 0; overflow: hidden; background-color: #12040d; }
+        
+        #title-box {
+            position: absolute;
+            bottom: 60px; /* Non troppo in basso */
+            left: 30px;
+            background-color: rgba(255, 245, 250, 0.9); /* Rosa chiarissimo, quasi bianco */
+            padding: 8px 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        #title-text {
+            color: #d16b9d; /* Rosa scuro per contrasto sul fondo chiaro */
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px; /* Più piccolo */
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        #data-content { display: none; }
+    </style>
+</head>
+<body>
+
+<div id="title-box">
+    <p id="title-text">Trova la parola più usata</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+<script>
+let atoms = [];
+
+    function setup() {
+        createCanvas(windowWidth, windowHeight);
+        
+        const contentDiv = document.getElementById('data-content');
+        const text = contentDiv.innerText;
+        const regex = /([a-zàèìòù]{2,20}):\s*(\d+)/gi; 
+        let wordData = [];
+        let match;
+        
+        while ((match = regex.exec(text)) !== null) {
+            wordData.push({ word: match[1].toLowerCase(), count: parseInt(match[2]) });
+        }
+
+        wordData = wordData.sort((a, b) => b.count - a.count).slice(0, 180);
+
+        for (let i = 0; i < wordData.length; i++) {
+            atoms.push(new Atom(wordData[i].word, wordData[i].count, i === 0));
+        }
+    }
+
+    function draw() {
+        background(18, 4, 13); 
+        
+        for (let a of atoms) {
+            a.update();
+            a.display();
+        }
+    }
+
+    class Atom {
+        constructor(word, count, isTop) {
+            this.word = word;
+            this.count = count;
+            this.isTop = isTop;
+            this.x = random(width);
+            this.y = random(height);
+            this.vx = random(-0.2, 0.2);
+            this.vy = random(-0.2, 0.2);
+            
+            this.size = map(log(count + 1), 0, log(2000), 2, 9);
+            this.orbitType = floor(random(1, 4)); 
+            this.mainColor = color(255, random(140, 210), random(180, 255), 160);
+            this.orbitSpeed = random(0.02, 0.06);
+            this.orbitIncline = random(TWO_PI);
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0) this.x = width;
+            if (this.x > width) this.x = 0;
+            if (this.y < 0) this.y = height;
+            if (this.y > height) this.y = 0;
+        }
+
+        display() {
+            let isHovered = dist(mouseX, mouseY, this.x, this.y) < 25;
+
+            push();
+            translate(this.x, this.y);
+            
+            if (this.isTop && isHovered) {
+                scale(2.0); // Si ingrandisce
+                // Si illumina (alone luminoso)
+                noStroke();
+                fill(255, 255, 255, 30);
+                circle(0, 0, this.size * 8);
+                fill(255, 255, 255, 60);
+                circle(0, 0, this.size * 5);
+            }
+
+            rotate(this.orbitIncline);
+            
+            noFill();
+            strokeWeight(0.5);
+            
+            for (let i = 0; i < this.orbitType; i++) {
+                stroke(this.mainColor, 50);
+                let rX = (this.size * 2.8) + (i * 3);
+                let rY = rX * 0.45;
+                
+                push();
+                rotate(i * PI / 2.5);
+                ellipse(0, 0, rX * 2, rY * 2);
+                
+                fill(255, 230, 245);
+                noStroke();
+                let speedMult = (i + 1) * 0.7;
+                let ex = cos(frameCount * this.orbitSpeed * speedMult) * rX;
+                let ey = sin(frameCount * this.orbitSpeed * speedMult) * rY;
+                circle(ex, ey, 1.2);
+                pop();
+            }
+
+            noStroke();
+            fill(this.mainColor, 40);
+            circle(0, 0, this.size * 2.2); 
+            fill(255, 245, 252);
+            circle(0, 0, this.size);
+            pop();
+
+            // NUOVA LOGICA TESTO
+            if (isHovered) {
+                push();
+                textAlign(CENTER);
+                fill(255);
+                textSize(11);
+                textStyle(BOLD);
+                text(this.word.toUpperCase(), this.x, this.y - 18); // Parola sopra
+                
+                fill(255, 180, 220);
+                textSize(9);
+                textStyle(NORMAL);
+                text(this.count, this.x, this.y + 18); // Conteggio sotto
+                pop();
+            }
+        }
+    }
+
+    function windowResized() {
+        resizeCanvas(windowWidth, windowHeight);
+    }
+</script>
+
+<div id="data-content">
+    non: 1863, a: 1815, che: 1211, marques: 1136, sofia: 1132, e: 968, è: 961, ma: 888, la: 853, immagine: 808, 
+    omessa: 803, il: 758, di: 752, mi: 708, sono: 671, si: 662, in: 638, se: 631, ho: 586, per: 573, un: 556, 
+    no: 465, sei: 447, sticker: 436, incluso: 436, natalie: 432, bene: 427, ti: 410, io: 400, casa: 393, 
+    hai: 377, ah: 363, ok: 358, ora: 317, con: 310, l: 305, quando: 276, tu: 276, come: 274, una: 267, 
+    lo: 264, poi: 259, le: 257, sto: 254, alle: 254, ci: 249, perché: 249, dove: 228, ha: 223, devo: 213, 
+    vuoi: 213, fare: 205, va: 205, cosa: 197, domani: 176, oki: 169, treno: 159, arrivo: 157, solo: 156, 
+    ancora: 155, quindi: 155, andare: 152, mamma: 131, scuola: 130, papi: 130, grazie: 125, tutto: 123, 
+    vocale: 123, lavoro: 120, oggi: 114, pdf: 117, mami: 53, olà: 54, documento: 60, salario: 42, 
+    viaggio: 11, buono: 12, notte: 31, conteggio: 32, pagina: 49, chiamate: 56, perche: 242
+</div>
+
+</body>
+</html>
