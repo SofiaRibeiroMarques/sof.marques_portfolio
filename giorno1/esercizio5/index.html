@@ -11,9 +11,49 @@
 			padding: 0;
 			overflow: hidden;
 		}
+		  a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+      
+          a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: rgb(11, 15, 48);
+            transition: width 0.3s ease;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 10;
+
+        }
 	</style>
 </head>
 <body>
+		<div class="top-bar">
+        <div><a href="https://sofiaribeiromarques.github.io/sof.marques_portfolio/giorno1/"> Torna alla home</a></div>
+    </div>
 	<script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js"></script>
 	<script>
 
@@ -47,5 +87,6 @@
 			resizeCanvas(windowWidth, windowHeight)
 		}
 	</script>
+
 </body>
 </html>
